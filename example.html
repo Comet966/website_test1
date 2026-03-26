@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BitMask - Secure Bitwise Vault</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#a5cbe9",
+              "secondary-container": "#234b64",
+              "on-tertiary-fixed-variant": "#693c00",
+              "primary-fixed": "#c9e6ff",
+              "surface-bright": "#31394d",
+              "outline": "#88929b",
+              "on-secondary-container": "#94bad7",
+              "surface-container-highest": "#2d3449",
+              "surface-container": "#171f33",
+              "inverse-surface": "#dae2fd",
+              "inverse-primary": "#006591",
+              "secondary-fixed": "#c9e6ff",
+              "on-error-container": "#ffdad6",
+              "surface": "#0b1326",
+              "surface-dim": "#0b1326",
+              "tertiary-container": "#de8712",
+              "tertiary": "#ffb86e",
+              "on-primary-fixed": "#001e2f",
+              "on-error": "#690005",
+              "on-tertiary": "#492900",
+              "primary-fixed-dim": "#89ceff",
+              "primary": "#89ceff",
+              "on-background": "#dae2fd",
+              "primary-container": "#0ea5e9",
+              "outline-variant": "#3e4850",
+              "on-primary": "#00344d",
+              "error-container": "#93000a",
+              "on-surface": "#dae2fd",
+              "on-tertiary-fixed": "#2c1600",
+              "on-secondary-fixed": "#001e2f",
+              "on-primary-container": "#003751",
+              "inverse-on-surface": "#283044",
+              "on-secondary": "#04344c",
+              "surface-container-lowest": "#060e20",
+              "on-secondary-fixed-variant": "#234b64",
+              "tertiary-fixed": "#ffdcbd",
+              "surface-container-low": "#131b2e",
+              "on-surface-variant": "#bec8d2",
+              "error": "#ffb4ab",
+              "on-primary-fixed-variant": "#004c6e",
+              "secondary": "#a5cbe9",
+              "on-tertiary-container": "#4d2b00",
+              "surface-variant": "#2d3449",
+              "surface-tint": "#89ceff",
+              "surface-container-high": "#222a3d",
+              "background": "#0b1326",
+              "tertiary-fixed-dim": "#ffb86e"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(23, 31, 51, 0.7);
+            backdrop-filter: blur(12px);
+            border: 0.5px solid rgba(62, 72, 80, 0.15);
+        }
+        .mono-tech {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-[#0b1326] flex justify-between items-center w-full px-8 py-4 max-w-full mx-auto fixed top-0 z-50">
+<div class="text-2xl font-bold tracking-tighter text-sky-500 font-headline uppercase">BitMask</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-headline text-sm tracking-wider uppercase text-slate-400 hover:text-sky-200 transition-colors" href="#">Dashboard</a>
+<a class="font-headline text-sm tracking-wider uppercase text-sky-400 border-b-2 border-sky-500 pb-1" href="#">Encrypt</a>
+<a class="font-headline text-sm tracking-wider uppercase text-slate-400 hover:text-sky-200 transition-colors" href="#">Decrypt</a>
+<a class="font-headline text-sm tracking-wider uppercase text-slate-400 hover:text-sky-200 transition-colors" href="#">Vault</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-[#131b2e] p-2 rounded-lg transition-all active:opacity-80">settings</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-[#131b2e] p-2 rounded-lg transition-all active:opacity-80">account_circle</button>
+</div>
+</nav>
+<main class="min-h-screen pt-32 pb-24 px-6 md:px-12 lg:px-24">
+<!-- Header Section -->
+<header class="max-w-4xl mb-16">
+<div class="inline-block px-3 py-1 rounded-full bg-surface-container-highest mb-6">
+<span class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary-fixed-dim">Security Protocol v4.0.1</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-headline font-bold tracking-tighter text-on-surface mb-6 leading-none">
+                Bitwise <span class="text-transparent bg-clip-text bg-gradient-to-br from-primary-container to-primary">XOR Synthesis</span>
+</h1>
+<p class="text-lg text-on-surface-variant max-w-2xl font-light leading-relaxed">
+                Combine two visual data layers into a cryptographically unique key image. Our synthesis engine performs per-pixel XOR operations to ensure perfect data obfuscation.
+            </p>
+</header>
+<!-- Main Interaction Area: Two Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+<!-- Upload Area A -->
+<div class="group relative flex flex-col gap-4">
+<div class="flex justify-between items-end mb-1 px-1">
+<span class="text-[10px] uppercase tracking-widest font-black text-outline">Source Buffer Alpha</span>
+<span class="mono-tech text-[10px] text-primary-fixed-dim">STATUS: READY</span>
+</div>
+<div class="surface-container-lowest glass-panel h-[400px] rounded-xl flex flex-col items-center justify-center p-8 transition-all duration-500 group-hover:bg-surface-container-low border-b-2 border-transparent group-hover:border-primary">
+<div class="w-20 h-20 rounded-full bg-surface-container-highest flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">add_photo_alternate</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-2">Image A</h3>
+<p class="text-sm text-on-surface-variant text-center mb-8 max-w-[200px]">Drop your primary encryption layer here or <span class="text-primary underline cursor-pointer">browse files</span></p>
+<div class="w-full mt-auto">
+<div class="flex justify-between mb-2">
+<span class="mono-tech text-[9px] text-outline">ENCRYPTION_ID</span>
+<span class="mono-tech text-[9px] text-outline">SHA-256</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-0 bg-primary group-hover:w-1/3 transition-all duration-1000"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Upload Area B -->
+<div class="group relative flex flex-col gap-4">
+<div class="flex justify-between items-end mb-1 px-1">
+<span class="text-[10px] uppercase tracking-widest font-black text-outline">Source Buffer Beta</span>
+<span class="mono-tech text-[10px] text-primary-fixed-dim">STATUS: READY</span>
+</div>
+<div class="surface-container-lowest glass-panel h-[400px] rounded-xl flex flex-col items-center justify-center p-8 transition-all duration-500 group-hover:bg-surface-container-low border-b-2 border-transparent group-hover:border-primary">
+<div class="w-20 h-20 rounded-full bg-surface-container-highest flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">filter_tilt_shift</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-2">Image B</h3>
+<p class="text-sm text-on-surface-variant text-center mb-8 max-w-[200px]">Drop the mask or secondary entropy layer here to initiate bitwise XOR</p>
+<div class="w-full mt-auto">
+<div class="flex justify-between mb-2">
+<span class="mono-tech text-[9px] text-outline">MASK_VECTOR</span>
+<span class="mono-tech text-[9px] text-outline">AES-GCM</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-0 bg-primary group-hover:w-1/4 transition-all duration-700"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Call to Action Section -->
+<div class="flex flex-col items-center">
+<div class="w-full max-w-4xl p-8 bg-surface-container-low rounded-xl flex flex-col md:flex-row items-center justify-between gap-8 border border-outline-variant/10">
+<div class="flex flex-col gap-1">
+<h4 class="font-headline text-lg font-bold">Ready for Synthesis?</h4>
+<p class="text-sm text-on-surface-variant max-w-sm">Generating a key image will perform a non-reversible bitwise XOR operation between both source buffers.</p>
+</div>
+<button class="group relative w-full md:w-auto px-10 py-5 bg-gradient-to-br from-primary-container to-primary text-on-primary-container font-headline font-bold uppercase tracking-widest rounded-lg flex items-center justify-center gap-3 active:scale-95 transition-all">
+                    Generate Key Image
+                    <span class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">bolt</span>
+</button>
+</div>
+<!-- Technical Detail Footer -->
+<div class="mt-12 flex gap-12 flex-wrap justify-center opacity-40">
+<div class="flex flex-col items-center gap-1">
+<span class="mono-tech text-[10px]">THROUGHPUT</span>
+<span class="mono-tech text-xs">2.4 GB/s</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="mono-tech text-[10px]">ALGORITHM</span>
+<span class="mono-tech text-xs">XOR_MOD_256</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="mono-tech text-[10px]">LATENCY</span>
+<span class="mono-tech text-xs">12.4ms</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="mono-tech text-[10px]">INTEGRITY</span>
+<span class="mono-tech text-xs">VERIFIED</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Content Showcase - Secondary Section -->
+<section class="bg-surface-container-lowest py-24 px-6 md:px-12 lg:px-24">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center gap-4 mb-12">
+<div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+<h2 class="font-headline text-xs font-black uppercase tracking-[0.4em] text-outline">How the Vault Secures Data</h2>
+<div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="surface-container rounded-xl p-8 border border-outline-variant/5">
+<div class="mb-6 h-48 w-full bg-surface-container-highest rounded overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-700" data-alt="high contrast abstract digital noise pattern with deep blue and electric cyan glitches representing encrypted data" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkkoRJVJje-pBSqsFIfXZP-vbnQMC0--QUg9leLQswBOBeBPFuwp46Eu9s3gUCgf8mIohFiQlN7vn2ihtRfyB53q3ItqRmtINyzeT6iemM2k_nxtLo9ddhoukhZAc79RFwe_R0FdBEsrTaOFAvOm3jMDqU7FDwE9wLrC-JRAsyyKpim__uPXcKvryI741kSsYBBoMFtyWMFA0QgyICumh3Z8-s5orlKmn_Qbl4WMkBnkt0-hQjm4VL_DhOTUQG-LYLguAZTNwRUWcy"/>
+</div>
+<span class="mono-tech text-[9px] text-primary mb-2 block">MODULE_01</span>
+<h5 class="font-headline font-bold mb-3 uppercase tracking-tight">Bitwise XOR</h5>
+<p class="text-xs leading-relaxed text-on-surface-variant font-light">Each pixel in Image A is compared with the corresponding pixel in Image B, flipping bits where they match to create a unique resulting value.</p>
+</div>
+<div class="surface-container rounded-xl p-8 border border-outline-variant/5">
+<div class="mb-6 h-48 w-full bg-surface-container-highest rounded overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-700" data-alt="architectural interior of a high-tech data center with glowing server racks and mirrored surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3n4MZqfsqifI8mSvubf7pB1vsq5mh4YDb7qYeRVrQc6uHytqJxJJgexjmdkzeDltTiBUOCyYyCLqzkNCbpmuGXDJOKM2i0tz66Mz28koeUqBZ-yObn3YXYN-OCLGZAlhXFbjZNdxgQXKfL69GRWD0s_W8MzGDjCu_01omAfrnNjK5Kb6xQt0xVluMzTr8g8NR__w2IEHCvFeNSWMdTG-XQ1TNVipi2lkUvR4VkiaDba8qTU6prEWQT8icsca8wQLqhztq0Nhe4ui-"/>
+</div>
+<span class="mono-tech text-[9px] text-primary mb-2 block">MODULE_02</span>
+<h5 class="font-headline font-bold mb-3 uppercase tracking-tight">Entropy injection</h5>
+<p class="text-xs leading-relaxed text-on-surface-variant font-light">The vault uses visual entropy from your uploaded images to generate high-degree randomness that is impossible to brute-force reverse.</p>
+</div>
+<div class="surface-container rounded-xl p-8 border border-outline-variant/5">
+<div class="mb-6 h-48 w-full bg-surface-container-highest rounded overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-700" data-alt="close up of a sapphire crystal glass panel showing refracted light and prismatic edge highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkPUZuWen_rHIvfkjzfW-oakEs8uknwm35vf8JNBQbCrLTU5G4PowT6jvvBkj_f8yOp8G4JcgHPiX2aDrX02ocbFKdcADtLuRqb6-M2S2tqjfvfQiZs9ZCzAOnDxmF7l8D0aqY1ZpHSd4zbUx6vSlO2O-8gOTsrZetFk25m_U55InqgYm0-ZDoFDJZHDjZLPYrhl6owbuIxA2jvRomvoz4k1iov5-9l2kF0c8GZMdmn-THT123gDFadkSdotJ3z27qMKUJGhLbMG4X"/>
+</div>
+<span class="mono-tech text-[9px] text-primary mb-2 block">MODULE_03</span>
+<h5 class="font-headline font-bold mb-3 uppercase tracking-tight">Zero-Knowledge</h5>
+<p class="text-xs leading-relaxed text-on-surface-variant font-light">BitMask operates entirely on-client. Your source images never touch our servers, ensuring your visual data remains truly private.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#060e20] w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-800/15">
+<div class="text-lg font-black text-slate-400 font-headline uppercase tracking-tighter">BitMask</div>
+<div class="font-['Inter'] text-xs font-light text-slate-500 text-center">
+            © 2024 BitMask Digital Vault. Secure Bitwise Encryption.
+        </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-slate-600 hover:text-sky-400 transition-colors text-xs uppercase tracking-widest font-bold" href="#">Documentation</a>
+<a class="text-slate-600 hover:text-sky-400 transition-colors text-xs uppercase tracking-widest font-bold" href="#">Privacy Policy</a>
+<a class="text-slate-600 hover:text-sky-400 transition-colors text-xs uppercase tracking-widest font-bold" href="#">GitHub</a>
+<a class="text-slate-600 hover:text-sky-400 transition-colors text-xs uppercase tracking-widest font-bold" href="#">Security Protocol</a>
+</div>
+</footer>
+</body></html>
